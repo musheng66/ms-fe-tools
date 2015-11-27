@@ -1,6 +1,13 @@
 (function ($) {
 	
-	//拖拽
+	//获取url中指定参数的值 用法：$.getUrlParam('parametername')
+	$.getUrlParam = function(name) {
+		var reg = new RegExp("(^|&)"+ name +"=([^&]*)(&|$)");
+		var r = window.location.search.substr(1).match(reg);
+		if (r!=null) return unescape(r[2]); return null;
+	}
+	
+	//拖拽 用法：$("#yourid").drags({handle:".dragableareaname"});
 	$.fn.drags = function (opt) {
 
 		opt = $.extend({
@@ -29,7 +36,7 @@
 
 	};
 	
-	//复选框多选 $(".checkall").checkboxs({handler:".checkone"});
+	//复选框多选 用法：$(".checkall").checkboxs({handler:".checkone"});
 	$.fn.checkboxs = function (opt) {
 
 		opt = $.extend({
