@@ -8,10 +8,12 @@
 		if (r!=null) return unescape(r[2]); return null;
 	}
 	
-	//返回顶部 用法：$("btn").backtotop(); 添加时间：2015.12.09
-	$.fn.backtotop = function(){
-	
+	//返回顶部 用法：$("btn").backtotop({speed: 1000}); 添加时间：2015.12.09
+	$.fn.backtotop = function(opt){
+		opt = $.extend({}, opt);
+		
 		var $selected = this;
+		var speed = (opt.speed === "") ? 1000 : opt.speed;
 		
 		$(window).on('scroll', function() {
 			if($(window).scrollTop() > 100){
@@ -23,7 +25,7 @@
 			$('body,html').animate({
 				scrollTop: 0
 			},
-			1000);
+			speed);
 			return false;
 		});
 	}
