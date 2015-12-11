@@ -1,7 +1,6 @@
-# MsJS
 Musheng's JS Tool
 =================
-A lazy man made it ...
+a lazy man made it ...
 
 Based on JQuery
 ---------------
