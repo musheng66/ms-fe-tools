@@ -1,11 +1,11 @@
 Musheng's JS Tool
 =================
-a lazy man made it ...
+由一位懒人写就的工具文件 ...
 
 Based on JQuery
 ---------------
-required : jQuery1.9.0+
+需要 : jQuery1.9.0+
 
 How to use
 ----------
-just include it in your pages
+只需引入
