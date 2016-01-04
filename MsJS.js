@@ -60,7 +60,7 @@
 	};
 	
 	//复选框多选 用法：$(".checkall").checkboxs({handler:".checkone"},function(){}); 添加时间：2015.11.25
-	$.fn.checkboxs = function (opt) {
+	$.fn.checkboxs = function (opt, fn) {
 
 		opt = $.extend({
 			handler: ""
