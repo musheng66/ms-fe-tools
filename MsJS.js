@@ -59,15 +59,17 @@
 
 	};
 	
-	//复选框多选 用法：$(".checkall").checkboxs({handler:".checkone"},function(){}); 添加时间：2015.11.25
-	$.fn.checkboxs = function (opt, fn) {
+	//复选框多选 用法：$(".checkall").checkboxs({handler:".checkone",function(){},}); 添加时间：2015.11.25
+	$.fn.checkboxs = function (opt) {
 
 		opt = $.extend({
-			handler: ""
+			handler : "",
+			back : "",
 		}, opt);
 
 		var $selected = this;
 		var $elements = (opt.handler === "") ? this : $(opt.handler);
+		var $callback = (opt.back === "") ? null : $(opt.back);
 
 		$selected.on("click", function (e) {
 			if($(this).prop("checked") == true){
@@ -77,8 +79,8 @@
 			}
 			//e.preventDefault();
 			//回调函数
-			if (typeof fn == 'function'){
-				fn();
+			if ($callback && typeof opt.back() == 'function'){
+				opt.back();
 			}
 		});
 		
@@ -95,8 +97,8 @@
 				$selected.prop("checked", false);
 			}
 			//回调函数
-			if (typeof fn == 'function'){
-				fn();
+			if ($callback && typeof opt.back() == 'function'){
+				opt.back();
 			}
 		});
 		
