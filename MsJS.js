@@ -8,16 +8,23 @@
 		if (r!=null) return unescape(r[2]); return null;
 	}
 	
-	//返回顶部 用法：$("btn").backtotop({speed: 1000}); 添加时间：2015.12.09
+	//返回顶部 用法：$("btn").backtotop({speed: 1000, mscroll: function(){}, mback: function(){},}); 添加时间：2015.12.09
 	$.fn.backtotop = function(opt){
-		opt = $.extend({}, opt);
+		opt = $.extend({
+			speed : "",
+			mscroll : "",
+			mback : "",
+		}, opt);
 		
 		var $selected = this;
 		var speed = (opt.speed === "") ? 1000 : opt.speed;
+		var $jmscroll = (opt.mscroll === "") ? null : $(opt.mscroll);
+		var $callback = (opt.mback === "") ? null : $(opt.mback);
 		
-		$(window).on('scroll', function() {
-			if($(window).scrollTop() > 100){
-			
+		$(window).on('scroll', function(){
+			if ($jmscroll!="" && typeof opt.mscroll == 'function'){
+				//回调函数
+				opt.mscroll();
 			}
 		});
 		
@@ -26,8 +33,13 @@
 				scrollTop: 0
 			},
 			speed);
-			return false;
+			if ($callback && typeof opt.mback == 'function'){
+				//回调函数
+				opt.mback();
+			}
 		});
+		
+		return false;
 	}
 	
 	//拖拽 用法：$("#yourid").drags({handle:".dragableareaname"}); 添加时间：2015.11.25
@@ -59,17 +71,17 @@
 
 	};
 	
-	//复选框多选 用法：$(".checkall").checkboxs({handler:".checkone",function(){},}); 添加时间：2015.11.25
+	//复选框多选 用法：$(".checkall").checkboxs({handler:".checkone", mback: function(){},}); 添加时间：2015.11.25
 	$.fn.checkboxs = function (opt) {
 
 		opt = $.extend({
 			handler : "",
-			back : "",
+			mback : "",
 		}, opt);
 
 		var $selected = this;
 		var $elements = (opt.handler === "") ? this : $(opt.handler);
-		var $callback = (opt.back === "") ? null : $(opt.back);
+		var $callback = (opt.mback === "") ? null : $(opt.mback);
 
 		$selected.on("click", function (e) {
 			if($(this).prop("checked") == true){
@@ -79,8 +91,8 @@
 			}
 			//e.preventDefault();
 			//回调函数
-			if ($callback && typeof opt.back() == 'function'){
-				opt.back();
+			if ($callback && typeof opt.mback == 'function'){
+				opt.mback();
 			}
 		});
 		
@@ -97,8 +109,8 @@
 				$selected.prop("checked", false);
 			}
 			//回调函数
-			if ($callback && typeof opt.back() == 'function'){
-				opt.back();
+			if ($callback && typeof opt.mback == 'function'){
+				opt.mback();
 			}
 		});
 		
