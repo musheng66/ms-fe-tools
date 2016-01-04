@@ -59,7 +59,7 @@
 
 	};
 	
-	//复选框多选 用法：$(".checkall").checkboxs({handler:".checkone"}); 添加时间：2015.11.25
+	//复选框多选 用法：$(".checkall").checkboxs({handler:".checkone"},function(){}); 添加时间：2015.11.25
 	$.fn.checkboxs = function (opt) {
 
 		opt = $.extend({
@@ -76,6 +76,10 @@
 				$elements.prop("checked", false);
 			}
 			//e.preventDefault();
+			//回调函数
+			if (typeof fn == 'function'){
+				fn();
+			}
 		});
 		
 		$elements.on("click", function (e) {
@@ -89,6 +93,10 @@
 				$selected.prop("checked", true);
 			} else {
 				$selected.prop("checked", false);
+			}
+			//回调函数
+			if (typeof fn == 'function'){
+				fn();
 			}
 		});
 		
