@@ -118,7 +118,7 @@
 	};
 })(jQuery);
 
-//定义数组remove方法 用法：array.remove(index); 添加时间：2015.11.27
+//定义数组remove方法 用法：array.remove(index); index:数组下标 添加时间：2015.11.27
 Array.prototype.remove=function(dx) { 
     
     if(isNaN(dx)||dx>this.length) {
@@ -133,7 +133,7 @@ Array.prototype.remove=function(dx) {
     this.length-=1;
 }
 
-//字符串转数组方法 用法：string.transtoArray('rp1,rp2','split'); 添加时间：2015.11.27
+//字符串转数组方法 用法：string.transtoArray('rp1,rp2','split'); 'rp1,rp2...':需要替换为''的字符 'split':以此字符为分隔符 添加时间：2015.11.27
 String.prototype.transtoArray=function(rp, sp) { 
     
     if(!this || this.length==0) {
