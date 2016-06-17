@@ -28,7 +28,7 @@
 			}
 		});
 		
-		$selected.on("click", function (e) {
+		$selected.off().on("click", function (e) {
 			$('body,html').animate({
 				scrollTop: 0
 			},
