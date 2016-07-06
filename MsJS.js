@@ -5,7 +5,8 @@
 	$.getUrlParam = function(name) {
 		var reg = new RegExp("(^|&)"+ name +"=([^&]*)(&|$)");
 		var r = window.location.search.substr(1).match(reg);
-		if (r!=null) return unescape(r[2]); return null;
+		//使用decodeURI转换中文参数，之前用了unescape()，中文参数会变成乱码  
+		if (r!=null) return decodeURI(r[2]); return null;
 	}
 	
 	//返回顶部 用法：$("btn").backtotop({speed: 1000, mscroll: function(){}, mback: function(){},}); 添加时间：2015.12.09
