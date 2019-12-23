@@ -29,7 +29,11 @@ class LocalStorage {
       return obj
     }
     if (this.validate.isNull(obj)) return content
-    obj = JSON.parse(obj)
+    try {
+      obj = JSON.parse(obj)
+    } catch (e) {
+      return obj
+    }
     switch (obj.dataType) {
       case 'string':
         content = obj.content
