@@ -1,5 +1,5 @@
 import Store from './store'
-const HelloWorld = () => {
+const MsFeTools = () => {
   let helloText = 'World'
   const hello = () => {
     console.log('Hello')
@@ -18,4 +18,4 @@ const HelloWorld = () => {
   }
 }
 
-export default HelloWorld()
+export default MsFeTools()

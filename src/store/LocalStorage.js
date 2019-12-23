@@ -45,7 +45,7 @@ class LocalStorage {
         content = Boolean(obj.content)
         break
       case 'object':
-        content = JSON.parse(obj.content)
+        content = obj.content
         break
       default:
         content = obj.content
