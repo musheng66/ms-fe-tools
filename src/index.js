@@ -1,3 +1,4 @@
+import Store from './store'
 const HelloWorld = () => {
   let helloText = 'World'
   const hello = () => {
@@ -12,7 +13,8 @@ const HelloWorld = () => {
   return {
     hello,
     world,
-    changeHelloText
+    changeHelloText,
+    Store
   }
 }
 
