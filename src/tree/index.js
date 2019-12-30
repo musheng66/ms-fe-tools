@@ -1,7 +1,7 @@
 import JsonTree from './jsonTree'
 
-const Store = {
+const Tree = {
   JsonTree: JsonTree,
 }
 
-export default JsonTree
+export default Tree

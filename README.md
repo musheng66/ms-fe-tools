@@ -2,9 +2,10 @@
   * 方便使用的前端工具类库
 
 ## 包括
-* Validate 类
-* LocalStorage 类
-* ...
+  * Validate
+  * Store
+  * Tree
+  * ...
 
 ## 用法
 ### 基本用法
@@ -12,9 +13,9 @@
   <script src="ms-fe-tools.js"></script>
   <script>
     // 创建实例
-    var LocalStorage = new MsFeTools.Store.LocalStorage()
-    // 存放
-    LocalStorage.set({ name: 'setTest', content: '内容' })
+    var validator = new MsFeTools.Validate()
+    // 调用方法
+    validator.isNull(null)
   </script>
 ```
 ### ES6用法
@@ -22,7 +23,36 @@
   // 引入
   import MsFeTools from 'ms-fe-tools'
   // 创建实例
-  let LocalStorage = new MsFeTools.Store.LocalStorage()
-  // 存放
-  LocalStorage.get({ name: 'setTest' })
+  let jsonTree = new MsFeTools.Tree.JsonTree()
+  // 调用方法
+  jsonTree.getNodeByIdentifier('treeId')
+```
+
+## 类
+  项目中包含的工具类。
+### Tree
+  树形结构的数据处理。
+#### JsonTree
+  处理 json 格式的树形结构数据。
+```javascript
+  // 实例化
+  const jsonTree = new JsonTree({ identifier: 'id', childrenIdentifier: 'children' })
+  
+  // 树形结构数据
+  let tree = { id: '1', name: 'tree1', children: [{ id: 'a1', name: 'treea1' }] }
+  
+  // 根据 identifier 获取节点
+  const node = jsonTree.getNodeByIdentifier(tree, 'a1')
+  
+  // 根据 identifier 获取父节点
+  const parentNode = jsonTree.getParentNodeByIdentifier(tree, 'a1')
+  
+  // 向指定节点位置添加子节点
+  jsonTree.addNodeByIdentifier(tree, { id: 'b1', name: 'treeb1' }, 'a1')
+  
+  // 更新指定节点内容
+  jsonTree.updateNodeByIdentifier(tree, { id: 'b1', name: 'updated treeb1' }, 'b1')
+  
+  // 删除指定节点
+  jsonTree.deleteNodeByIdentifier(tree, 'b1')
 ```
