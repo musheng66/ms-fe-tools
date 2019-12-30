@@ -2,6 +2,7 @@ import Validate from '../validate'
 
 class LocalStorage {
   constructor () {
+    if (!window) return Error('Can not init Cookie because there is no Window object.')
     this.validate = new Validate()
   }
   /**
