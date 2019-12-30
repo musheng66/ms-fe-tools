@@ -2,6 +2,7 @@ import Validate from '../../src/validate/index'
 let validator = null
 test('实例化 Validate', () => {
   validator = new Validate()
+  expect(validator).not.toBe(null)
 })
 test('判断对象是否为空', () => {
   expect(validator.isNull(null)).toBe(true)
