@@ -2,12 +2,12 @@ import Validate from '../validate'
 
 class SessionStorage {
   constructor () {
-    if (!window) return Error('Can not init SessionStorage because there is no Window object.')
     this._validate = new Validate()
+    if (this._validate.isNull(window)) return Error('Can not init SessionStorage because there is no Window object.')
   }
   /**
    * 存储
-   * @param {Object} params
+   * @param {object} params
    */
   set (params) {
     let { name, content } = params
@@ -20,7 +20,7 @@ class SessionStorage {
   }
   /**
    * 获取
-   * @param {Object} params
+   * @param {object} params
    */
   get (params) {
     let { name, debug } = params
@@ -56,7 +56,7 @@ class SessionStorage {
   }
   /**
    * 删除
-   * @param {Object} params
+   * @param {object} params
    */
   remove (params) {
     let { name } = params

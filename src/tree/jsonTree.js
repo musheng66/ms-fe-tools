@@ -3,7 +3,7 @@ import Validate from '../validate'
 class JsonTree {
   /**
    * 构造方法
-   * @param {Object} props 包含树形结构的唯一标识符，子节点标识符
+   * @param {object} props 包含树形结构的唯一标识符，子节点标识符
    */
   constructor(props = {}) {
     this._validate = new Validate()
@@ -15,9 +15,9 @@ class JsonTree {
   }
   /**
    * 根据 identifier 获取树形结构数据中的对应节点
-   * @param {Object} tree
-   * @param {String} identifier
-   * @return {Object}
+   * @param {object} tree
+   * @param {string} identifier
+   * @return {object}
    */
   getNodeByIdentifier (tree, identifier = null) {
     if (this._validate.isNull(identifier) || identifier === '') {
@@ -36,9 +36,9 @@ class JsonTree {
   }
   /**
    * 根据 identifier 获取树形结构数据中的父节点
-   * @param {Object} tree
-   * @param {String} identifier
-   * @return {Object}
+   * @param {object} tree
+   * @param {string} identifier
+   * @return {object}
    */
   getParentNodeByIdentifier (tree, identifier = null) {
     if (this._validate.isNull(identifier) || identifier === '') {
@@ -58,10 +58,10 @@ class JsonTree {
   }
   /**
    * 在指定 identifier 的节点下添加指定索引位置的子节点
-   * @param {Object} tree
-   * @param {Object} node 要添加的节点
-   * @param {String} identifier 指定的 identifier，默认在根节点添加
-   * @param {Number} index 要添加的位置索引，默认在最后添加
+   * @param {object} tree
+   * @param {object} node 要添加的节点
+   * @param {string} identifier 指定的 identifier，默认在根节点添加
+   * @param {number} index 要添加的位置索引，默认在最后添加
    */
   addNodeByIdentifier (tree, node, identifier = null, index = null) {
     if (this._validate.isNull(identifier) || identifier === '') {
@@ -94,9 +94,9 @@ class JsonTree {
   }
   /**
    * 更新指定 identifier 的节点内容
-   * @param {Object} tree
-   * @param {String} identifier
-   * @param {Object} node
+   * @param {object} tree
+   * @param {string} identifier
+   * @param {object} node
    */
   updateNodeByIdentifier (tree, node, identifier = null) {
     if (this._validate.isNull(identifier) || identifier === '') {
@@ -121,8 +121,8 @@ class JsonTree {
   }
   /**
    * 删除指定 identifier 的节点
-   * @param {Object} tree
-   * @param {String} identifier
+   * @param {object} tree
+   * @param {string} identifier
    */
   deleteNodeByIdentifier (tree, identifier) {
     if (tree[this.identifier] === identifier) {

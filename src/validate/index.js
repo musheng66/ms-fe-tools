@@ -1,7 +1,7 @@
 class Validate {
   /**
    * 判断是否对象
-   * @param {Object} obj
+   * @param {object} obj
    * @return {boolean} result
    */
   isObject (obj) {
@@ -9,7 +9,7 @@ class Validate {
   }
   /**
    * 判断是否为 null 或 undefined
-   * @param {Object} val
+   * @param {object} val
    * @returns {boolean} result
    */
   isNull (val) {
@@ -30,7 +30,7 @@ class Validate {
   }
   /**
    * URL地址是否合法
-   * @param {String} url
+   * @param {string} url
    * @returns {boolean} result
    */
   isURL (url) {
@@ -40,7 +40,7 @@ class Validate {
   }
   /**
    * validate email
-   * @param {String} email
+   * @param {string} email
    * @returns {boolean} result
    */
   isEmail (email) {
@@ -50,7 +50,7 @@ class Validate {
   }
   /**
    * 判断手机号码是否正确
-   * @param {String} phone
+   * @param {string} phone
    * @returns {boolean} result
    */
   isMobile (phone) {
@@ -60,7 +60,7 @@ class Validate {
   }
   /**
    * 电话号码是否合法
-   * @param {String} tel
+   * @param {string} tel
    * @returns {boolean} result
    */
   isTel (tel) {
@@ -70,7 +70,7 @@ class Validate {
   }
   /**
    * 判断身份证号码
-   * @param {String} code
+   * @param {string} code
    * @returns {boolean} result
    */
   isIdCard (code) {

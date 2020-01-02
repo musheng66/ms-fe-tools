@@ -11,7 +11,7 @@ class Common {
    * 深度递归合并对象
    * @param target
    * @param sources
-   * @return {Object} target
+   * @return {object} target
    */
   mergeDeep (target, ...sources) {
     if (!sources.length) return target
