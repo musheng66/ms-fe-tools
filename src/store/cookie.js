@@ -3,7 +3,7 @@ import Validate from '../validate'
 class Cookie {
   constructor () {
     if (!document) return Error('Can not init Cookie because there is no Document object.')
-    this.validate = new Validate()
+    this._validate = new Validate()
   }
   /**
    * 存储

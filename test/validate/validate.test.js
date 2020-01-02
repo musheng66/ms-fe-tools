@@ -4,6 +4,9 @@ test('实例化 Validate', () => {
   validator = new Validate()
   expect(validator).not.toBe(null)
 })
+test('判断是否是对象', () => {
+  expect(validator.isObject({ a: 'test' })).toBe(true)
+})
 test('判断对象是否为空', () => {
   expect(validator.isNull(null)).toBe(true)
 })

@@ -3,7 +3,7 @@ import Validate from '../validate'
 class LocalStorage {
   constructor () {
     if (!window) return Error('Can not init LocalStorage because there is no Window object.')
-    this.validate = new Validate()
+    this._validate = new Validate()
   }
   /**
    * 存储
@@ -29,7 +29,7 @@ class LocalStorage {
     if (debug) {
       return obj
     }
-    if (this.validate.isNull(obj)) return content
+    if (this._validate.isNull(obj)) return content
     try {
       obj = JSON.parse(obj)
     } catch (e) {

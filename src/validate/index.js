@@ -1,5 +1,13 @@
 class Validate {
   /**
+   * 判断是否对象
+   * @param {Object} obj
+   * @return {boolean} result
+   */
+  isObject (obj) {
+    return (obj && typeof obj === 'object' && !Array.isArray(obj))
+  }
+  /**
    * 判断是否为 null 或 undefined
    * @param {Object} val
    * @returns {boolean} result

@@ -6,7 +6,7 @@ class JsonTree {
    * @param {Object} props 包含树形结构的唯一标识符，子节点标识符
    */
   constructor(props = {}) {
-    this.validate = new Validate()
+    this._validate = new Validate()
     this.identifier = props.identifier || 'id' // 标识符，用于标识树的唯一节点
     this.childrenIdentifier = props.childrenIdentifier || 'children' // 子节点标识符，标识树的子节点
     this.nodeGet = null // 递归获取的节点
@@ -20,7 +20,7 @@ class JsonTree {
    * @return {Object}
    */
   getNodeByIdentifier (tree, identifier = null) {
-    if (this.validate.isNull(identifier) || identifier === '') {
+    if (this._validate.isNull(identifier) || identifier === '') {
       return tree
     }
     if (tree[this.identifier] === identifier) {
@@ -41,7 +41,7 @@ class JsonTree {
    * @return {Object}
    */
   getParentNodeByIdentifier (tree, identifier = null) {
-    if (this.validate.isNull(identifier) || identifier === '') {
+    if (this._validate.isNull(identifier) || identifier === '') {
       return tree
     }
     if (tree[this.childrenIdentifier] && tree[this.childrenIdentifier].length > 0) {
@@ -64,7 +64,7 @@ class JsonTree {
    * @param {Number} index 要添加的位置索引，默认在最后添加
    */
   addNodeByIdentifier (tree, node, identifier = null, index = null) {
-    if (this.validate.isNull(identifier) || identifier === '') {
+    if (this._validate.isNull(identifier) || identifier === '') {
       // 不传 identifier 则插入根节点
       if (tree.children) {
         if (Number.isInteger(index)) {
@@ -99,7 +99,7 @@ class JsonTree {
    * @param {Object} node
    */
   updateNodeByIdentifier (tree, node, identifier = null) {
-    if (this.validate.isNull(identifier) || identifier === '') {
+    if (this._validate.isNull(identifier) || identifier === '') {
       tree[0] = node
     }
     if (tree[this.identifier] === identifier) {
