@@ -19,6 +19,9 @@
   </script>
 ```
 ### ES6用法
+```
+  npm install ms-fe-tools
+```
 ```javascript
   // 引入
   import MsFeTools from 'ms-fe-tools'
