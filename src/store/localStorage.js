@@ -2,12 +2,12 @@ import Validate from '../validate'
 
 class LocalStorage {
   constructor () {
-    if (!window) return Error('Can not init LocalStorage because there is no Window object.')
-    this.validate = new Validate()
+    this._validate = new Validate()
+    if (this._validate.isNull(window)) return Error('Can not init LocalStorage because there is no Window object.')
   }
   /**
    * 存储
-   * @param {Object} params
+   * @param {object} params
    */
   set (params) {
     let { name, content } = params
@@ -20,7 +20,7 @@ class LocalStorage {
   }
   /**
    * 获取
-   * @param {Object} params
+   * @param {object} params
    */
   get (params) {
     let { name, debug } = params
@@ -29,7 +29,7 @@ class LocalStorage {
     if (debug) {
       return obj
     }
-    if (this.validate.isNull(obj)) return content
+    if (this._validate.isNull(obj)) return content
     try {
       obj = JSON.parse(obj)
     } catch (e) {
@@ -56,7 +56,7 @@ class LocalStorage {
   }
   /**
    * 删除
-   * @param {Object} params
+   * @param {object} params
    */
   remove (params) {
     let { name } = params
