@@ -3,23 +3,27 @@ import Validate from '../validate'
 class JsonTree {
   /**
    * 构造方法
-   * @param {Object} props 包含树形结构的唯一标识符，子节点标识符
+   * @param {object} tree 树
+   * @param {object} props 包含树形结构的唯一标识符，子节点标识符
    */
-  constructor(props = {}) {
+  constructor(tree = null, props = {}) {
     this.validate = new Validate()
+    if (this.validate.isNull(tree) || JSON.stringify(tree) === '{}') {
+      return new Error('Init Failed. Invalid tree object.')
+    }
     this.identifier = props.identifier || 'id' // 标识符，用于标识树的唯一节点
     this.childrenIdentifier = props.childrenIdentifier || 'children' // 子节点标识符，标识树的子节点
     this.nodeGet = null // 递归获取的节点
     this.parentNodeGet = null // 递归获取的父节点
-    this.treeNode = null // 递归操作后的树
+    this.tree = tree // 递归操作后的树
   }
   /**
    * 根据 identifier 获取树形结构数据中的对应节点
-   * @param {Object} tree
-   * @param {String} identifier
-   * @return {Object}
+   * @param {string|null} identifier
+   * @param {object} tree
+   * @return {object}
    */
-  getNodeByIdentifier (tree, identifier = null) {
+  getNodeByIdentifier (identifier = null, tree = this.tree) {
     if (this.validate.isNull(identifier) || identifier === '') {
       return tree
     }
@@ -28,7 +32,7 @@ class JsonTree {
     } else {
       if (tree[this.childrenIdentifier] && tree[this.childrenIdentifier].length > 0) {
         for (let i = 0; i < tree[this.childrenIdentifier].length; i++) {
-          this.getNodeByIdentifier(tree[this.childrenIdentifier][i], identifier)
+          this.getNodeByIdentifier(identifier, tree[this.childrenIdentifier][i])
         }
       }
     }
@@ -36,11 +40,11 @@ class JsonTree {
   }
   /**
    * 根据 identifier 获取树形结构数据中的父节点
-   * @param {Object} tree
-   * @param {String} identifier
-   * @return {Object}
+   * @param {string|null} identifier
+   * @param {object} tree
+   * @return {object}
    */
-  getParentNodeByIdentifier (tree, identifier = null) {
+  getParentNodeByIdentifier (identifier = null, tree = this.tree) {
     if (this.validate.isNull(identifier) || identifier === '') {
       return tree
     }
@@ -50,7 +54,7 @@ class JsonTree {
           this.parentNodeGet = tree
           break
         } else {
-          this.getParentNodeByIdentifier(tree[this.childrenIdentifier][i], identifier)
+          this.getParentNodeByIdentifier(identifier, tree[this.childrenIdentifier][i])
         }
       }
     }
@@ -58,12 +62,12 @@ class JsonTree {
   }
   /**
    * 在指定 identifier 的节点下添加指定索引位置的子节点
-   * @param {Object} tree
-   * @param {Object} node 要添加的节点
-   * @param {String} identifier 指定的 identifier，默认在根节点添加
-   * @param {Number} index 要添加的位置索引，默认在最后添加
+   * @param {object} node 要添加的节点
+   * @param {string|null} identifier 指定的 identifier，默认在根节点添加
+   * @param {number|null} index 要添加的位置索引，默认在最后添加
+   * @param {object} tree
    */
-  addNodeByIdentifier (tree, node, identifier = null, index = null) {
+  addNodeByIdentifier (node, identifier = null, index = null, tree = this.tree) {
     if (this.validate.isNull(identifier) || identifier === '') {
       // 不传 identifier 则插入根节点
       if (tree.children) {
@@ -87,60 +91,76 @@ class JsonTree {
     } else {
       if (tree[this.childrenIdentifier] && tree[this.childrenIdentifier].length > 0) {
         for (let i = 0; i < tree[this.childrenIdentifier].length; i++) {
-          this.addNodeByIdentifier(tree[this.childrenIdentifier][i], node, identifier, index)
+          this.addNodeByIdentifier(node, identifier, index, tree[this.childrenIdentifier][i])
         }
       }
     }
+    return this.tree
   }
   /**
    * 更新指定 identifier 的节点内容
-   * @param {Object} tree
-   * @param {String} identifier
-   * @param {Object} node
+   * @param {object} node
+   * @param {string|null} identifier
+   * @param {object} tree
    */
-  updateNodeByIdentifier (tree, node, identifier = null) {
+  updateNodeByIdentifier (node, identifier = null, tree = this.tree) {
     if (this.validate.isNull(identifier) || identifier === '') {
-      tree[0] = node
+      return this.tree
     }
     if (tree[this.identifier] === identifier) {
-      tree = node
-      return
+      if (this.tree[this.identifier] === identifier) {
+        // 根节点
+        this.tree = node
+      } else {
+        tree = node
+      }
+      return this.tree
     }
     if (tree[this.childrenIdentifier] && tree[this.childrenIdentifier].length > 0) {
       for (let i = 0; i < tree[this.childrenIdentifier].length; i++) {
         if (tree[this.childrenIdentifier][i][this.identifier] === identifier) {
           tree[this.childrenIdentifier][i] = node
-          return
+          break
         } else {
           if (tree[this.childrenIdentifier][i][this.childrenIdentifier] && tree[this.childrenIdentifier][i][this.childrenIdentifier].length > 0) {
-            this.updateNodeByIdentifier(tree[this.childrenIdentifier][i], node, identifier)
+            this.updateNodeByIdentifier(node, identifier, tree[this.childrenIdentifier][i])
           }
         }
       }
     }
+    return this.tree
   }
   /**
    * 删除指定 identifier 的节点
-   * @param {Object} tree
-   * @param {String} identifier
+   * @param {string|null} identifier
+   * @param {object} tree
    */
-  deleteNodeByIdentifier (tree, identifier) {
+  deleteNodeByIdentifier (identifier = null, tree = this.tree) {
+    if (this.validate.isNull(identifier) || identifier === '') {
+      return this.tree
+    }
     if (tree[this.identifier] === identifier) {
-      tree = null
-      return
+      if (this.tree[this.identifier] === identifier) {
+        // 根节点
+        this.tree = null
+      } else {
+        tree = null
+      }
+      return this.tree
     }
     if (tree[this.childrenIdentifier] && tree[this.childrenIdentifier].length > 0) {
       for (let i = 0; i < tree[this.childrenIdentifier].length; i++) {
         if (tree[this.childrenIdentifier][i][this.identifier] === identifier) {
           tree[this.childrenIdentifier].splice(i, 1)
-          return
+          break
         } else {
           if (tree[this.childrenIdentifier][i][this.childrenIdentifier] && tree[this.childrenIdentifier][i][this.childrenIdentifier].length > 0) {
-            this.deleteNodeByIdentifier(tree[this.childrenIdentifier][i], identifier)
+            this.deleteNodeByIdentifier(identifier, tree[this.childrenIdentifier][i])
           }
         }
       }
     }
+    return this.tree
   }
 }
 

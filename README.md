@@ -35,24 +35,24 @@
 #### JsonTree
   处理 json 格式的树形结构数据。
 ```javascript
-  // 实例化
-  const jsonTree = new JsonTree({ identifier: 'id', childrenIdentifier: 'children' })
-  
   // 树形结构数据
   let tree = { id: '1', name: 'tree1', children: [{ id: 'a1', name: 'treea1' }] }
   
+  // 实例化
+  const jsonTree = new MsFeTools.Tree.JsonTree(tree, { identifier: 'id', childrenIdentifier: 'children' })
+  
   // 根据 identifier 获取节点
-  const node = jsonTree.getNodeByIdentifier(tree, 'a1')
+  const node = jsonTree.getNodeByIdentifier('a1')
   
   // 根据 identifier 获取父节点
-  const parentNode = jsonTree.getParentNodeByIdentifier(tree, 'a1')
+  const parentNode = jsonTree.getParentNodeByIdentifier('a1')
   
   // 向指定节点位置添加子节点
-  jsonTree.addNodeByIdentifier(tree, { id: 'b1', name: 'treeb1' }, 'a1')
+  const treeAdded = jsonTree.addNodeByIdentifier({ id: 'b1', name: 'treeb1' }, 'a1')
   
   // 更新指定节点内容
-  jsonTree.updateNodeByIdentifier(tree, { id: 'b1', name: 'updated treeb1' }, 'b1')
+  const treeUpdated = jsonTree.updateNodeByIdentifier({ id: 'b1', name: 'updated treeb1' }, 'b1')
   
   // 删除指定节点
-  jsonTree.deleteNodeByIdentifier(tree, 'b1')
+  const treeDeleted = jsonTree.deleteNodeByIdentifier('b1')
 ```
