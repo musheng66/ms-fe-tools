@@ -7,3 +7,6 @@ test('实例化 Common', () => {
 test('深度递归合并对象', () => {
   expect(common.mergeDeep({ a: 'test', c: 'test3' }, { a: 'test1', b: 'test2' })).toEqual({ a: 'test1', c: 'test3', b: 'test2' })
 })
+test('生成随机字符串', () => {
+  console.log(common.guid())
+})
