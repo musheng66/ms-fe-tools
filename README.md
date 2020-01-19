@@ -3,6 +3,7 @@
 
 ## 包括
   * Validate
+  * Common
   * Store
   * Tree
   * ...
@@ -33,6 +34,25 @@
 
 ## 类
   项目中包含的工具类。
+
+### Common
+  常用工具方法。
+#### 初始化
+```javascript
+  // 初始化
+  let common = new Common()
+```
+#### mergeDeep
+  深度合并。
+```javascript
+  const result = common.mergeDeep({ a: 'test', c: 'test3' }, { a: 'test1', b: 'test2' })
+```
+#### guid
+  生成随机字符串。
+```javascript
+  const result = common.guid()
+```
+
 ### Tree
   树形结构的数据处理。
 #### JsonTree
