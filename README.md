@@ -39,7 +39,6 @@
   常用工具方法。
 #### 初始化
 ```javascript
-  // 初始化
   let common = new Common()
 ```
 #### mergeDeep
