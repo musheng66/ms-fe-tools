@@ -20,9 +20,11 @@
   </script>
 ```
 ### ES6用法
+#### 项目引入
 ```
   npm install ms-fe-tools
 ```
+#### 使用方法
 ```javascript
   // 引入
   import MsFeTools from 'ms-fe-tools'
