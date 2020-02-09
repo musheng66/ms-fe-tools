@@ -1,11 +1,11 @@
-import Validate from '../validate'
+import Validator from '../validator'
 
 class Common {
   /**
    * 构造方法
    */
   constructor() {
-    this._validate = new Validate()
+    this.validator = new Validator()
   }
   /**
    * 深度递归合并对象
@@ -16,9 +16,9 @@ class Common {
   mergeDeep (target, ...sources) {
     if (!sources.length) return target
     const source = sources.shift()
-    if (this._validate.isObject(target) && this._validate.isObject(source)) {
+    if (this.validator.isObject(target) && this.validator.isObject(source)) {
       for (const key in source) {
-        if (this._validate.isObject(source[key])) {
+        if (this.validator.isObject(source[key])) {
           if (!target[key]) {
             Object.assign(target, {
               [key]: {} })
@@ -55,13 +55,17 @@ class Common {
   }
   /**
    * 获取随机ID，组件拖到预览视图后就会被设置个ID
-   * @returns {string} guid
+   * @returns {string|null} guid
    */
   guid () {
-    const s1 = Math.floor((1 + Math.random()) * 0x10000).toString(16).substring(1)
-    const s2 = Math.floor((1 + Math.random()) * 0x10000).toString(16).substring(1)
-    const s3 = Math.floor((1 + Math.random()) * 0x10000).toString(16).substring(1)
-    return s1 + s2 + '-' + s3
+    try {
+      const s1 = Math.floor((1 + Math.random()) * 0x10000).toString(16).substring(1)
+      const s2 = Math.floor((1 + Math.random()) * 0x10000).toString(16).substring(1)
+      const s3 = Math.floor((1 + Math.random()) * 0x10000).toString(16).substring(1)
+      return s1 + s2 + s3
+    } catch (e) {
+      return null
+    }
   }
 }
 

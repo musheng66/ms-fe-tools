@@ -1,11 +1,11 @@
-import Validate from '../validate'
+import Validator from '../validator'
 import Common from '../common'
 
 class Cookie {
   constructor (defaultAttributes = {}) {
-    this._validate = new Validate()
-    if (this._validate.isNull(document)) return Error('Can not init Cookie because there is no Document object.')
-    if (this._validate.isNull(defaultAttributes)) this.defaultAttributes = { path: '/' }
+    this.validator = new Validator()
+    if (this.validator.isNull(document)) return Error('Can not init Cookie because there is no Document object.')
+    if (this.validator.isNull(defaultAttributes)) this.defaultAttributes = { path: '/' }
     this._common = new Common()
   }
   /**

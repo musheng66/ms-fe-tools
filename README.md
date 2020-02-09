@@ -2,7 +2,7 @@
   * 方便使用的前端工具类库
 
 ## 包括
-  * Validate
+  * Validator
   * Common
   * Store
   * Tree
@@ -14,7 +14,7 @@
   <script src="ms-fe-tools.js"></script>
   <script>
     // 创建实例
-    var validator = new MsFeTools.Validate()
+    var validator = new MsFeTools.Validator()
     // 调用方法
     validator.isNull(null)
   </script>

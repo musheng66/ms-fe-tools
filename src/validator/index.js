@@ -1,4 +1,4 @@
-class Validate {
+class Validator {
   /**
    * 判断是否对象
    * @param {object} obj
@@ -80,4 +80,4 @@ class Validate {
   }
 }
 
-export default Validate
+export default Validator

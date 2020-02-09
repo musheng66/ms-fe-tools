@@ -1,7 +1,7 @@
-import Validate from '../../src/validate/index'
+import Validator from '../../src/validator/index'
 let validator = null
-test('实例化 Validate', () => {
-  validator = new Validate()
+test('实例化 Validator', () => {
+  validator = new Validator()
   expect(validator).not.toBe(null)
 })
 test('判断是否是对象', () => {

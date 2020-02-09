@@ -1,9 +1,9 @@
-import Validate from '../validate'
+import Validator from '../validator'
 
 class LocalStorage {
   constructor () {
-    this._validate = new Validate()
-    if (this._validate.isNull(window)) return Error('Can not init LocalStorage because there is no Window object.')
+    this.validator = new Validator()
+    if (this.validator.isNull(window)) return Error('Can not init LocalStorage because there is no Window object.')
   }
   /**
    * 存储
@@ -29,7 +29,7 @@ class LocalStorage {
     if (debug) {
       return obj
     }
-    if (this._validate.isNull(obj)) return content
+    if (this.validator.isNull(obj)) return content
     try {
       obj = JSON.parse(obj)
     } catch (e) {
