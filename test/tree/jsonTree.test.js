@@ -8,8 +8,14 @@ test('实例化 JsonTree', () => {
 test('根据 identifier 获取节点内容', () => {
   expect(jsonTree.getNodeByIdentifier('a1')).toEqual({ identifier: 'a1' })
 })
+test('根据 identifier 获取节点内容，未获取到', () => {
+  expect(jsonTree.getNodeByIdentifier('c1')).toEqual(null)
+})
 test('根据 identifier 获取父节点内容', () => {
   expect(jsonTree.getParentNodeByIdentifier('a1')).toEqual({ identifier: '1', children: [{ identifier: 'a1' }] })
+})
+test('根据 identifier 获取父节点内容，未获取到', () => {
+  expect(jsonTree.getParentNodeByIdentifier('1')).toEqual(null)
 })
 test('根据 identifier 添加节点', () => {
   expect(jsonTree.addNodeByIdentifier({ identifier: 'b1' }, 'a1')).toEqual({ identifier: '1', children: [{ identifier: 'a1', children: [{ identifier: 'b1' }] }] })

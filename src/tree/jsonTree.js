@@ -24,6 +24,7 @@ class JsonTree {
    * @return {object}
    */
   getNodeByIdentifier (identifier = null, tree = this.tree) {
+    this.nodeGet = null
     if (this.validator.isNull(identifier) || identifier === '') {
       return tree
     }
@@ -45,6 +46,7 @@ class JsonTree {
    * @return {object}
    */
   getParentNodeByIdentifier (identifier = null, tree = this.tree) {
+    this.parentNodeGet = null
     if (this.validator.isNull(identifier) || identifier === '') {
       return tree
     }

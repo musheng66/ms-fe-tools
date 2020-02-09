@@ -65,10 +65,10 @@
   // 实例化
   const jsonTree = new MsFeTools.Tree.JsonTree(tree, { identifier: 'id', childrenIdentifier: 'children' })
   
-  // 根据 identifier 获取节点
+  // 根据 identifier 获取节点，未获取到则返回 null
   const node = jsonTree.getNodeByIdentifier('a1')
   
-  // 根据 identifier 获取父节点
+  // 根据 identifier 获取父节点，未获取到则返回 null
   const parentNode = jsonTree.getParentNodeByIdentifier('a1')
   
   // 向指定节点位置添加子节点
@@ -79,4 +79,34 @@
   
   // 删除指定节点
   const treeDeleted = jsonTree.deleteNodeByIdentifier('b1')
+```
+#### JsonArrayTree
+  处理 json 数组格式的树形结构数据。
+```javascript
+  // 树形结构数据
+  let tree = [
+               { id: '1', name: 'root'},
+               { id: 'a2', order: 2, parentId: '1' },
+               { id: 'a1', order: 1, parentId: '1' },
+               { id: 'ca1', parentId: 'a1' },
+               { id: 'ca2', parentId: 'a2' }
+             ]
+  
+  // 实例化
+  const jsonArrayTree = new MsFeTools.Tree.JsonArrayTree(tree, { identifier: 'id', parentIdentifier: 'parentId' })
+  
+  // 根据 identifier 获取节点，未获取到则返回 null
+  const node = jsonArrayTree.getNodeByIdentifier('a1')
+  
+  // 根据 identifier 获取父节点，未获取到则返回 null
+  const parentNode = jsonArrayTree.getParentNodeByIdentifier('a1')
+  
+  // 向指定节点位置添加子节点
+  const treeAdded = jsonArrayTree.addNodeByIdentifier({ id: 'b1' }, 'a1')
+  
+  // 更新指定节点内容
+  const treeUpdated = jsonArrayTree.updateNodeByIdentifier({ id: 'b1', name: 'updated treeb1' }, 'b1')
+  
+  // 删除指定节点
+  const treeDeleted = jsonArrayTree.deleteNodeByIdentifier('a1')
 ```
