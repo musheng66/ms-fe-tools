@@ -1,7 +1,6 @@
-import Validator from '../../src/validator/index'
-let validator = null
+import { validator } from '../../src/index'
+
 test('实例化 Validator', () => {
-  validator = new Validator()
   expect(validator).not.toBe(null)
 })
 test('判断是否是对象', () => {
@@ -25,3 +24,17 @@ test('判断对象是否为 email', () => {
 test('判断对象是否为身份证号', () => {
   expect(validator.isIdCard('11011119701001011X')).toBe(true)
 })
+test('判断是否小写字母', () => {
+  expect(validator.isLowerCase('wwW')).toBe(false)
+})
+test('判断是否大写字母', () => {
+  expect(validator.isUpperCase('WXA')).toBe(true)
+})
+test('判断是否英文字母', () => {
+  expect(validator.isAlphabets('WXA')).toBe(true)
+})
+test('判断是否中文', () => {
+  expect(validator.isChineseCharacters('是以')).toBe(true)
+})
+
+

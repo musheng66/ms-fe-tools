@@ -18,19 +18,30 @@ class Common {
     const source = sources.shift()
     if (this.validator.isObject(target) && this.validator.isObject(source)) {
       for (const key in source) {
-        if (this.validator.isObject(source[key])) {
-          if (!target[key]) {
-            Object.assign(target, {
-              [key]: {} })
+        if (source.hasOwnProperty(key)) {
+          if (this.validator.isObject(target[key])) {
+            this.mergeDeep(target[key], source[key])
+          } else {
+            target[key] = source[key]
           }
-          this.mergeDeep(target[key], source[key])
-        } else {
-          Object.assign(target, {
-            [key]: source[key] })
         }
       }
     }
     return this.mergeDeep(target, ...sources)
+  }
+  /**
+   * 获取随机ID，组件拖到预览视图后就会被设置个ID
+   * @returns {string|null} guid
+   */
+  guid () {
+    try {
+      const s1 = Math.floor((1 + Math.random()) * 0x10000).toString(16).substring(1)
+      const s2 = Math.floor((1 + Math.random()) * 0x10000).toString(16).substring(1)
+      const s3 = Math.floor((1 + Math.random()) * 0x10000).toString(16).substring(1)
+      return s1 + s2 + s3
+    } catch (e) {
+      return null
+    }
   }
   /**
    * 打开新窗口
@@ -51,20 +62,6 @@ class Common {
     // Puts focus on the newWindow
     if (window.focus) {
       newWindow.focus()
-    }
-  }
-  /**
-   * 获取随机ID，组件拖到预览视图后就会被设置个ID
-   * @returns {string|null} guid
-   */
-  guid () {
-    try {
-      const s1 = Math.floor((1 + Math.random()) * 0x10000).toString(16).substring(1)
-      const s2 = Math.floor((1 + Math.random()) * 0x10000).toString(16).substring(1)
-      const s3 = Math.floor((1 + Math.random()) * 0x10000).toString(16).substring(1)
-      return s1 + s2 + s3
-    } catch (e) {
-      return null
     }
   }
 }

@@ -1,4 +1,4 @@
-import Tree from '../../src/tree'
+import { Tree } from '../../src/index'
 let jsonArrayTree = null
 let tree = [
   { id: '1', name: 'root'},

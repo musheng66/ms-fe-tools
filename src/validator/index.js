@@ -35,11 +35,11 @@ class Validator {
    */
   isURL (url) {
     if (this.isNull(url)) return false
-    const isURL = /^(?:http(s)?:\/\/)?[\w.-]+(?:\.[\w\.-]+)+[\w\-\._~:/?#[\]@!\$&'\*\+,;=.]+$/
+    const isURL = /^(?:(http(s)?|ftp):\/\/)?[\w.-]+(?:\.[\w\.-]+)+[\w\-\._~:/?#[\]@!\$&'\*\+,;=.]+$/
     return isURL.test(url)
   }
   /**
-   * validate email
+   * 验证电子邮件地址是否合法
    * @param {string} email
    * @returns {boolean} result
    */
@@ -49,14 +49,14 @@ class Validator {
     return isEmail.test(email)
   }
   /**
-   * 判断手机号码是否正确
-   * @param {string} phone
+   * 判断手机号码是否合法
+   * @param {string} mobile
    * @returns {boolean} result
    */
-  isMobile (phone) {
-    if (this.isNull(phone)) return false
-    const isPhone = /^[1][3,4,5,6,7,8,9][0-9]{9}$/
-    return isPhone.test(phone)
+  isMobile (mobile) {
+    if (this.isNull(mobile)) return false
+    const isMobile = /^[1][3,4,5,6,7,8,9][0-9]{9}$/
+    return isMobile.test(mobile)
   }
   /**
    * 电话号码是否合法
@@ -69,7 +69,7 @@ class Validator {
     return isTel.test(tel)
   }
   /**
-   * 判断身份证号码
+   * 判断身份证号码是否合法
    * @param {string} code
    * @returns {boolean} result
    */
@@ -77,6 +77,46 @@ class Validator {
     if (this.isNull(code)) return false
     const isIdCard = /(^\d{15}$)|(^\d{18}$)|(^\d{17}(\d|X|x)$)/
     return isIdCard.test(code)
+  }
+  /**
+   * 判断是否小写字母
+   * @param {string} str
+   * @returns {boolean} result
+   */
+  isLowerCase (str) {
+    if (this.isNull(str)) return false
+    const isLowerCase = /^[a-z]+$/
+    return isLowerCase.test(str)
+  }
+  /**
+   * 判断是否大写字母
+   * @param {string} str
+   * @returns {boolean} result
+   */
+  isUpperCase (str) {
+    if (this.isNull(str)) return false
+    const isUpperCase = /^[A-Z]+$/
+    return isUpperCase.test(str)
+  }
+  /**
+   * 判断是否英文大小写字母
+   * @param {string} str
+   * @returns {boolean} result
+   */
+  isAlphabets (str) {
+    if (this.isNull(str)) return false
+    const isAlphabets = /^[A-Za-z]+$/
+    return isAlphabets.test(str)
+  }
+  /**
+   * 判断是否中文
+   * @param {string} str
+   * @returns {boolean} result
+   */
+  isChineseCharacters (str) {
+    if (this.isNull(str)) return false
+    const isChineseCharacters = /^[\u4e00-\u9fa5]+$/
+    return isChineseCharacters.test(str)
   }
 }
 

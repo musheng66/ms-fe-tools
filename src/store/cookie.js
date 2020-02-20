@@ -29,12 +29,6 @@ class Cookie {
       if (!attributes[attributeName]) continue
       attributesString += '; ' + attributeName
       if (attributes[attributeName] === true) continue
-      // Considers RFC 6265 section 5.2:
-      // ...
-      // 3.  If the remaining unparsed-attributes contains a %x3B (";") character:
-      // Consume the characters of the unparsed-attributes up to,
-      // not including, the first %x3B (";") character.
-      // ...
       attributesString += '=' + attributes[attributeName].split(';')[0]
     }
     return (document.cookie = key + '=' + value + attributesString)

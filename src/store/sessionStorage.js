@@ -12,9 +12,9 @@ class SessionStorage {
   set (params) {
     let { name, content } = params
     let obj = {
-      dataType: typeof (content),
       content: content,
-      datetime: new Date().getTime()
+      dataType: typeof (content),
+      dateTime: new Date().getTime()
     }
     sessionStorage.setItem(name, JSON.stringify(obj))
   }

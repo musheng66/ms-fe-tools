@@ -1,4 +1,4 @@
-import Tree from '../../src/tree'
+import { Tree } from '../../src/index'
 let jsonTree = null
 let tree = { identifier: '1', children: [{ identifier: 'a1' }] }
 test('实例化 JsonTree', () => {
