@@ -7,9 +7,9 @@ const random = new Random()
 const windowOperation = new WindowOperation()
 
 const common = {
-  objectOperation,
+  object: objectOperation,
   random,
-  windowOperation
+  window: windowOperation
 }
 
 export default common
