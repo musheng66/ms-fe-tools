@@ -199,19 +199,20 @@
 ```
 
 ### common
-  常用工具方法。
+  常用工具方法，包含若干子类。
 #### 引入
 ```javascript
   import { common } from 'ms-fe-tools'
 ```
-#### mergeDeep
-  深度合并多个对象。第一个参数为目标，其他参数为要合并的对象。
-  键相同时前面的值会被最新的合并对象值覆盖。
+#### ObjectOperation
+  操作对象的相关方法。
 ```javascript
-  const result = common.mergeDeep({ a: 'test', c: 'test3' }, { a: 'test1', b: 'test2' }, { d: 'test4' })
+  // 深度合并多个对象。第一个参数为目标，其他参数为要合并的对象。键相同时前面的值会被最新的合并对象值覆盖。
+  const result = common.objectOperation.mergeDeep({ a: 'test', c: 'test3' }, { a: 'test1', b: 'test2' }, { d: 'test4' })
 ```
-#### guid
-  生成随机字符串。
+#### Random
+  用于生成随机数、字符串等。
 ```javascript
-  const result = common.guid()
+  // 生成 16 进制随机数字符串。
+  const result = common.random.guid()
 ```

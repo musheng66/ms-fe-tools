@@ -1,17 +1,14 @@
-import store from './store'
 import Tree from './tree'
-import Common from './common'
-import Validator from './validator'
-
-const common = new Common()
-const validator = new Validator()
+import store from './store'
+import common from './common'
+import validator from './validator'
 
 const MsFeTools = () => {
   return {
     Tree,
     store,
-    validator,
-    common
+    common,
+    validator
   }
 }
 

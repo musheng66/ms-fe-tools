@@ -1,9 +1,8 @@
-import Validator from '../validator'
+import validator from '../validator'
 
 class SessionStorage {
   constructor () {
-    this.validator = new Validator()
-    if (this.validator.isNull(window)) return Error('Can not init SessionStorage because there is no Window object.')
+    if (validator.isNull(window)) return Error('Can not init SessionStorage because there is no Window object.')
   }
   /**
    * 存储
@@ -29,7 +28,7 @@ class SessionStorage {
     if (debug) {
       return obj
     }
-    if (this.validator.isNull(obj)) return content
+    if (validator.isNull(obj)) return content
     try {
       obj = JSON.parse(obj)
     } catch (e) {

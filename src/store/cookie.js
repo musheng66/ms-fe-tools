@@ -1,12 +1,10 @@
-import Validator from '../validator'
-import Common from '../common'
+import validator from '../validator'
+import common from '../common'
 
 class Cookie {
   constructor (defaultAttributes = {}) {
-    this.validator = new Validator()
-    if (this.validator.isNull(document)) return Error('Can not init Cookie because there is no Document object.')
-    if (this.validator.isNull(defaultAttributes)) this.defaultAttributes = { path: '/' }
-    this._common = new Common()
+    if (validator.isNull(document)) return Error('Can not init Cookie because there is no Document object.')
+    if (validator.isNull(defaultAttributes)) this.defaultAttributes = { path: '/' }
   }
   /**
    * 存储
@@ -15,7 +13,7 @@ class Cookie {
    * @param {object} attributes
    */
   set (key, value, attributes) {
-    attributes = this._common.mergeDeep({}, this.defaultAttributes, attributes)
+    attributes = common.objectOperation.mergeDeep({}, this.defaultAttributes, attributes)
     if (typeof attributes.expires === 'number') {
       attributes.expires = new Date(Date.now() + attributes.expires * 864e5)
     }
@@ -66,7 +64,7 @@ class Cookie {
     this.set(
       key,
       '',
-      this._common.mergeDeep({}, attributes, {
+      common.objectOperation.mergeDeep({}, attributes, {
         expires: -1
       })
     )

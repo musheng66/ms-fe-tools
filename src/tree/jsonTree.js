@@ -1,4 +1,4 @@
-import Validator from '../validator'
+import validator from '../validator'
 
 class JsonTree {
   /**
@@ -7,8 +7,7 @@ class JsonTree {
    * @param {object} props 包含树形结构的唯一标识符，子节点标识符
    */
   constructor(tree = null, props = {}) {
-    this.validator = new Validator()
-    if (this.validator.isNull(tree) || JSON.stringify(tree) === '{}') {
+    if (validator.isNull(tree) || JSON.stringify(tree) === '{}') {
       return new Error('Init Failed. Invalid tree object.')
     }
     this.identifier = props.identifier || 'id' // 标识符，用于标识树的唯一节点
@@ -25,7 +24,7 @@ class JsonTree {
    */
   getNodeByIdentifier (identifier = null, tree = this.tree) {
     this.nodeGet = null
-    if (this.validator.isNull(identifier) || identifier === '') {
+    if (validator.isNull(identifier) || identifier === '') {
       return tree
     }
     if (tree[this.identifier] === identifier) {
@@ -47,7 +46,7 @@ class JsonTree {
    */
   getParentNodeByIdentifier (identifier = null, tree = this.tree) {
     this.parentNodeGet = null
-    if (this.validator.isNull(identifier) || identifier === '') {
+    if (validator.isNull(identifier) || identifier === '') {
       return tree
     }
     if (tree[this.childrenIdentifier] && tree[this.childrenIdentifier].length > 0) {
@@ -70,7 +69,7 @@ class JsonTree {
    * @param {object} tree
    */
   addNodeByIdentifier (node, identifier = null, index = null, tree = this.tree) {
-    if (this.validator.isNull(identifier) || identifier === '') {
+    if (validator.isNull(identifier) || identifier === '') {
       // 不传 identifier 则插入根节点
       if (tree.children) {
         if (Number.isInteger(index)) {
@@ -106,7 +105,7 @@ class JsonTree {
    * @param {object} tree
    */
   updateNodeByIdentifier (node, identifier = null, tree = this.tree) {
-    if (this.validator.isNull(identifier) || identifier === '') {
+    if (validator.isNull(identifier) || identifier === '') {
       return this.tree
     }
     if (tree[this.identifier] === identifier) {
@@ -138,7 +137,7 @@ class JsonTree {
    * @param {object} tree
    */
   deleteNodeByIdentifier (identifier = null, tree = this.tree) {
-    if (this.validator.isNull(identifier) || identifier === '') {
+    if (validator.isNull(identifier) || identifier === '') {
       return this.tree
     }
     if (tree[this.identifier] === identifier) {

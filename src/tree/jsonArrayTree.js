@@ -1,4 +1,4 @@
-import Validator from '../validator'
+import validator from '../validator'
 
 class JsonArrayTree {
   /**
@@ -7,8 +7,7 @@ class JsonArrayTree {
    * @param {object} props 包含树形结构的唯一标识符，子节点标识符
    */
   constructor(tree = null, props = {}) {
-    this.validator = new Validator()
-    if (this.validator.isNull(tree) || JSON.stringify(tree) === '[]') {
+    if (validator.isNull(tree) || JSON.stringify(tree) === '[]') {
       return new Error('Init Failed. Invalid tree array.')
     }
     this.identifier = props.identifier || 'id' // 标识符，用于标识树的唯一节点
@@ -23,7 +22,7 @@ class JsonArrayTree {
    * @return {object}
    */
   getNodeByIdentifier (identifier = null, tree = this.tree) {
-    if (this.validator.isNull(identifier) || identifier === '') {
+    if (validator.isNull(identifier) || identifier === '') {
       return null
     }
     const nodeArray = this.tree.filter(node => {
@@ -42,7 +41,7 @@ class JsonArrayTree {
    * @return {object}
    */
   getParentNodeByIdentifier (identifier = null, tree = this.tree) {
-    if (this.validator.isNull(identifier) || identifier === '') {
+    if (validator.isNull(identifier) || identifier === '') {
       return null
     }
     const nodeArray = this.tree.filter(node => {
@@ -68,13 +67,13 @@ class JsonArrayTree {
    * @param {array} tree
    */
   addNodeByIdentifier (node, identifier = null, tree = this.tree) {
-    if (this.validator.isNull(identifier) || identifier === '') {
+    if (validator.isNull(identifier) || identifier === '') {
       return this.tree
     }
     const nodeIndex = this.tree.findIndex(node => {
       return node[this.identifier] === identifier
     })
-    if (this.validator.isNull(node[this.parentIdentifier]) || node[this.parentIdentifier] === '') {
+    if (validator.isNull(node[this.parentIdentifier]) || node[this.parentIdentifier] === '') {
       node[this.parentIdentifier] = identifier
     }
     if (nodeIndex > -1) {
@@ -90,7 +89,7 @@ class JsonArrayTree {
    * @param {array} tree
    */
   updateNodeByIdentifier (node, identifier = null, tree = this.tree) {
-    if (this.validator.isNull(identifier) || identifier === '') {
+    if (validator.isNull(identifier) || identifier === '') {
       return this.tree
     }
     const nodeIndex = this.tree.findIndex(node => {
@@ -107,7 +106,7 @@ class JsonArrayTree {
    * @param {array} tree
    */
   deleteNodeByIdentifier (identifier = null, tree = this.tree) {
-    if (this.validator.isNull(identifier) || identifier === '') {
+    if (validator.isNull(identifier) || identifier === '') {
       return this.tree
     }
     const nodeIndex = this.tree.findIndex(node => {
