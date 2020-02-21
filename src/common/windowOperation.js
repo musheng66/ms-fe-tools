@@ -1,8 +1,11 @@
+import validator from '../validator'
+
 class WindowOperation {
   /**
    * 构造方法
    */
   constructor() {
+    if (validator.isNull(window)) return Error('Can not init WindowOperation because there is no Window object.')
   }
   /**
    * 打开新窗口

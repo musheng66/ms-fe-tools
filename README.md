@@ -208,7 +208,11 @@
   操作对象的相关方法。
 ```javascript
   // 深度合并多个对象。第一个参数为目标，其他参数为要合并的对象。键相同时前面的值会被最新的合并对象值覆盖。
-  const result = common.objectOperation.mergeDeep({ a: 'test', c: 'test3' }, { a: 'test1', b: 'test2' }, { d: 'test4' })
+  const merge = common.objectOperation.mergeDeep({ a: 'test', c: 'test3' }, { a: 'test1', b: 'test2' }, { d: 'test4' })
+  // 深拷贝对象。
+  const clone = common.objectOperation.deepClone({ a: 'test', c: { a: 'test23', b: 'test2', d: { e: 2 } } })
+  // 获取对象类型，返回相应类型的字符串。
+  const type = common.objectOperation.getType(null) // 返回：'null'
 ```
 #### Random
   用于生成随机数、字符串等。
