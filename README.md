@@ -217,6 +217,9 @@
 #### Random
   用于生成随机数、字符串等。
 ```javascript
-  // 生成 16 进制随机数字符串。
-  const result = common.random.guid()
+  // 生成 16 进制随机数字符串，参数为分隔符，默认无分隔符
+  const guid = common.random.guid()
+
+  // 根据版本 4 生成 UUID，参数为分隔符，默认无分隔符
+  const UUID = common.random.UUID('-')
 ```
