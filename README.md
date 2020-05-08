@@ -223,3 +223,15 @@
   // 根据版本 4 生成 UUID，参数为分隔符，默认无分隔符
   const UUID = common.random.UUID('-')
 ```
+#### DateTime
+  用于处理日期、时间相关数据。
+```javascript
+  // 将时间按指定格式处理并返回
+  const format = common.dateTime.format(1588936360404, '{y}-{m}-{d} {h}:{i}:{s}')
+
+  // 计算给定时间距今的时间，一般格式为：xx 天前
+  const toDate = common.dateTime.toDate(1588936360404)
+
+  // 计算给定时间距今的时间，一般格式为：xx 天 xx 小时 xx 分
+  const fromLast = common.dateTime.fromLast(1588936360404)
+```
