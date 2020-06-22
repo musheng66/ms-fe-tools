@@ -13,7 +13,7 @@ class Cookie {
    * @param {object} attributes
    */
   set (key, value, attributes) {
-    attributes = common.objectOperation.mergeDeep({}, this.defaultAttributes, attributes)
+    attributes = common.object.mergeDeep({}, this.defaultAttributes, attributes)
     if (typeof attributes.expires === 'number') {
       attributes.expires = new Date(Date.now() + attributes.expires * 864e5)
     }
@@ -34,9 +34,8 @@ class Cookie {
   /**
    * 获取
    * @param {string} key
-   * @param {object} attributes
    */
-  get (key = '', attributes = {}) {
+  get (key = '') {
     const cookies = document.cookie ? document.cookie.split('; ') : []
     let jar = {}
     for (let i = 0; i < cookies.length; i++) {
@@ -51,7 +50,9 @@ class Cookie {
         if (key === name) {
           break
         }
-      } catch (e) {}
+      } catch (e) {
+        new Error(e)
+      }
     }
     return key !== '' ? jar[key] : jar
   }
@@ -64,7 +65,7 @@ class Cookie {
     this.set(
       key,
       '',
-      common.objectOperation.mergeDeep({}, attributes, {
+      common.object.mergeDeep({}, attributes, {
         expires: -1
       })
     )

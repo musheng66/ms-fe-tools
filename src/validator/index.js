@@ -35,7 +35,7 @@ class Validator {
    */
   isURL (url) {
     if (this.isNull(url)) return false
-    const isURL = /^(?:(http(s)?|ftp):\/\/)?[\w.-]+(?:\.[\w\.-]+)+[\w\-\._~:/?#[\]@!\$&'\*\+,;=.]+$/
+    const isURL = /^(?:(http(s)?|ftp):\/\/)?[\w.-]+(?:\.[\w\.-]+)+[\w\-\._~:/?#[\]@!\$&'\*\+,;=.]+$/ // eslint-disable-line
     return isURL.test(url)
   }
   /**

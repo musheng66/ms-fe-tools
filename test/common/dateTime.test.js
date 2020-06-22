@@ -1,3 +1,4 @@
+/* eslint-disable */
 import { common } from '../../src/index'
 
 test('格式化时间', () => {

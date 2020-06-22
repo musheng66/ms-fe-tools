@@ -1,3 +1,4 @@
+/* eslint-disable */
 import { Tree } from '../../src/index'
 let jsonTree = null
 let tree = { identifier: '1', children: [{ identifier: 'a1' }] }

@@ -1,3 +1,4 @@
+/* eslint-disable */
 import { common } from '../../src/index'
 
 test('深度递归合并对象', () => {

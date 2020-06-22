@@ -18,10 +18,9 @@ class JsonArrayTree {
   /**
    * 根据 identifier 获取树形结构数据中的对应节点
    * @param {string|null} identifier
-   * @param {array} tree
    * @return {object}
    */
-  getNodeByIdentifier (identifier = null, tree = this.tree) {
+  getNodeByIdentifier (identifier = null) {
     if (validator.isNull(identifier) || identifier === '') {
       return null
     }
@@ -37,10 +36,9 @@ class JsonArrayTree {
   /**
    * 根据 identifier 获取树形结构数据中的父节点
    * @param {string|null} identifier
-   * @param {array} tree
    * @return {object}
    */
-  getParentNodeByIdentifier (identifier = null, tree = this.tree) {
+  getParentNodeByIdentifier (identifier = null) {
     if (validator.isNull(identifier) || identifier === '') {
       return null
     }
@@ -64,9 +62,8 @@ class JsonArrayTree {
    * 在指定 identifier 的节点下添加指定索引位置的子节点
    * @param {object} node 要添加的节点
    * @param {string|null} identifier 指定的 identifier，默认在根节点添加
-   * @param {array} tree
    */
-  addNodeByIdentifier (node, identifier = null, tree = this.tree) {
+  addNodeByIdentifier (node, identifier = null) {
     if (validator.isNull(identifier) || identifier === '') {
       return this.tree
     }
@@ -81,14 +78,13 @@ class JsonArrayTree {
     }
     return this.tree
   }
-  
+
   /**
    * 更新指定 identifier 的节点内容，包括节点位置
    * @param {object} node
    * @param {string|null} identifier
-   * @param {array} tree
    */
-  updateNodeByIdentifier (node, identifier = null, tree = this.tree) {
+  updateNodeByIdentifier (node, identifier = null) {
     if (validator.isNull(identifier) || identifier === '') {
       return this.tree
     }
@@ -103,9 +99,8 @@ class JsonArrayTree {
   /**
    * 删除指定 identifier 的节点
    * @param {string|null} identifier
-   * @param {array} tree
    */
-  deleteNodeByIdentifier (identifier = null, tree = this.tree) {
+  deleteNodeByIdentifier (identifier = null) {
     if (validator.isNull(identifier) || identifier === '') {
       return this.tree
     }
@@ -118,7 +113,7 @@ class JsonArrayTree {
         return node[this.parentIdentifier] === identifier
       })
       for (let i of children) {
-        this.deleteNodeByIdentifier(i[this.identifier], this.tree)
+        this.deleteNodeByIdentifier(i[this.identifier])
       }
     }
     return this.tree
