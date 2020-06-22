@@ -226,6 +226,9 @@
 #### DateTime
   用于处理日期、时间相关数据。
 ```javascript
+  // 将当前时间按指定格式处理并返回
+  const now = common.dateTime.now('{y} 年 {m} 月 {d} 日 {h}:{i}:{s}')
+
   // 将时间按指定格式处理并返回
   const format = common.dateTime.format(1588936360404, '{y}-{m}-{d} {h}:{i}:{s}')
 
