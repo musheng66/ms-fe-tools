@@ -1,7 +1,7 @@
 import { common } from '../../src/index'
 
 test('格式化时间', () => {
-  const result = common.dateTime.format(new Date())
+  const result = common.dateTime.format(new Date(), '{y}-{m}-{d}')
   console.log(result)
   expect(result).not.toBe(0)
 })
