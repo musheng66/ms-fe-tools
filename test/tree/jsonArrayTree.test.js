@@ -1,3 +1,4 @@
+/* eslint-disable */
 import { Tree } from '../../src/index'
 let jsonArrayTree = null
 let tree = [

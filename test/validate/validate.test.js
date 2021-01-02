@@ -1,3 +1,4 @@
+/* eslint-disable */
 import { validator } from '../../src/index'
 
 test('实例化 Validator', () => {

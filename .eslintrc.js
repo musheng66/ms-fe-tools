@@ -10,5 +10,5 @@ module.exports = {
     es6: true,
     jest: true
   },
-  extends: ['plugin:vue/recommended', 'eslint:recommended']
+  extends: ['eslint:recommended']
 }

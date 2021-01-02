@@ -5,6 +5,15 @@ class DateTime {
    */
   constructor() {
   }
+
+  /**
+   * 获取当前时间，并格式化
+   * @param {string|null} format 默认格式 {y}-{m}-{d} {h}:{i}:{s}
+   * @return {*}
+   */
+  now (format = null) {
+    return this.format(new Date(), format)
+  }
   /**
    * @description 将时间按指定格式处理并返回
    * @param {string|number|object|null} time
@@ -77,24 +86,21 @@ class DateTime {
       if (('' + time).length === 10) time = parseInt(time) * 1000
       date = new Date(Number(time))
     }
-    let timeCalcM = ''
-    let timeCalcH = ''
-    let timeCalcD = ''
     let timeCalcString = ''
     const now = Date.now()
     let diff = (now - date) / 1000
     // 计算天
-    timeCalcD = Math.floor(diff / (3600 * 24))
+    let timeCalcD = Math.floor(diff / (3600 * 24))
     if (timeCalcD >= 1) {
       diff -= timeCalcD * 3600 * 24
     }
     // 计算小时，多于 1 天时需要减除 1 天的小时数再计算小时
-    timeCalcH = Math.floor(diff / 3600)
+    let timeCalcH = Math.floor(diff / 3600)
     if (timeCalcH >= 1) {
       diff -= timeCalcH * 3600
     }
     // 计算分
-    timeCalcM = Math.floor(diff / 60)
+    let timeCalcM = Math.floor(diff / 60)
     if (timeCalcD >= 1) timeCalcString += timeCalcD + ' 天 '
     if (timeCalcH >= 1) timeCalcString += timeCalcH + ' 小时 '
     if (timeCalcM >= 1) timeCalcString += timeCalcM + ' 分'

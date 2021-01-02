@@ -1,4 +1,11 @@
+/* eslint-disable */
 import { common } from '../../src/index'
+
+test('当前日期', () => {
+  const result = common.dateTime.now('{y} 年 {m} 月 {d} 日 {h}:{i}:{s}')
+  console.log(result)
+  expect(result).not.toBe(0)
+})
 
 test('格式化时间', () => {
   const result = common.dateTime.format(new Date(), '{y}-{m}-{d}')
