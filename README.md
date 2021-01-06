@@ -237,4 +237,7 @@
 
   // 计算给定时间距今的时间，一般格式为：xx 天 xx 小时 xx 分
   const fromLast = common.dateTime.fromLast(1588936360404)
+
+  // 根据时间戳计算从开始到结束时间的差
+  const lastLong = common.dateTime.lastLong(1588936360404, (new Date()).getTime())
 ```
