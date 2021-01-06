@@ -106,6 +106,32 @@ class DateTime {
     if (timeCalcM >= 1) timeCalcString += timeCalcM + ' 分'
     return timeCalcString
   }
+
+  /**
+   * 根据时间戳计算从开始到结束时间的差
+   * @param startTimestamp 起始时间戳
+   * @param endTimestamp 结束时间戳
+   * @return {string} lastTimeStr 一般格式为：xx天 xx小时 xx分 xx秒
+   */
+  lastLong (startTimestamp, endTimestamp) {
+    let startTime = Number(startTimestamp)
+    let endTime = Number(endTimestamp)
+    if (!(typeof startTime === 'number' && !isNaN(startTime)) || !(typeof endTime === 'number' && !isNaN(endTime))) return ''
+    if (String(startTime).length > 10) startTime = (startTime / 1000).toFixed(0)
+    if (String(endTime).length > 10) endTime = (endTime / 1000).toFixed(0)
+    const lastTime = endTime - startTime
+    if (lastTime < 0) return ''
+    let lastTimeStr = ''
+    let days = (lastTime / (60 * 60 * 24)).toFixed(0)
+    let hours = ((lastTime % (60 * 60 * 24)) / (60 * 60)).toFixed(0)
+    let minutes = ((lastTime % (60 * 60)) / (60)).toFixed(0)
+    let seconds = (lastTime % 60).toFixed(0)
+    if(days > 0) lastTimeStr += days + '天 '
+    if(hours > 0) lastTimeStr += hours + '小时 '
+    if(minutes > 0) lastTimeStr += minutes + '分钟 '
+    if(seconds > 0) lastTimeStr += seconds + '秒'
+    return lastTimeStr
+  }
 }
 
 export default DateTime

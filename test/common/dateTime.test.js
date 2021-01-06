@@ -24,3 +24,15 @@ test('获取距今时间，xx天xx小时xx分', () => {
   console.log(result)
   expect(result).not.toBe('')
 })
+
+test('获取时间差，xx天xx小时xx分', () => {
+  const result = common.dateTime.lastLong(1588936360404, (new Date()).getTime())
+  console.log(result)
+  expect(result).not.toBe('')
+})
+
+test('获取时间差，xx天xx小时xx分', () => {
+  const result = common.dateTime.lastLong(1588936360404, 1588936390404)
+  console.log(result)
+  expect(result).not.toBe('')
+})
