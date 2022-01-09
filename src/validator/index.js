@@ -8,6 +8,14 @@ class Validator {
     return (!this.isNull(obj) && typeof obj === 'object' && !Array.isArray(obj))
   }
   /**
+   * 判断是否String
+   * @param {object} obj
+   * @return {boolean} result
+   */
+  isString (obj) {
+    return (!this.isNull(obj) && typeof obj === 'string')
+  }
+  /**
    * 判断是否为 null 或 undefined
    * @param {object} val
    * @returns {boolean} result

@@ -38,4 +38,6 @@ test('判断是否中文', () => {
   expect(validator.isChineseCharacters('是以')).toBe(true)
 })
 
-
+test('判断是否字符串', () => {
+  expect(validator.isString('abcdefg')).toBe(true)
+})
